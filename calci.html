@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="calci.css"> -->
+    <style>
+        h1{
+    font-size: 35px;
+    color: rgb(0, 94, 255);
+    text-align: center;
+    
+}
+#container{
+    width: 20%;
+    height: 400px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+    display: grid;
+    
+    grid-template-columns:repeat(1,1fr);
+    grid-template-rows:repeat(1,fr);
+    margin-left: auto;
+    margin-right: auto;
+    
+   
+    margin-top: 100px;
+    
+}
+.child{
+    width: 49px;
+    height:46px;
+    
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+ 
+    
+}
+.child2{
+    width: 49px;
+    height:46px;
+    color: white;
+
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;    
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bolder;
+    background-color: black;
+
+}
+.child4{
+    width: 49px;
+    height:46px;
+    color: white;
+
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;    
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bolder;
+    background-color: black;
+
+}
+.child3{
+    width: 49px;
+    height:46px;
+    color: white;
+
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;    
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bolder;
+    background-color: red;
+}
+.small>.child{
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bolder;
+}
+.small{
+     width: 210px;
+     height: 300px;  
+
+    margin: auto;
+    display: grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-template-rows:repeat(4,1fr);
+
+    row-gap: 10px ;
+}
+.child1{
+
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    grid-column-start: 1;
+    grid-column-end: 5; 
+    border-radius: 10px;
+}
+    </style>
+</head>
+<body>
+    <h1>Masai Calculator</h1>
+    <div id="container">
+        <div class="small">
+            <div  class="child1">
+                <h4 id="display"></h4>
+            </div>
+            <div class="child">
+                <p>1</p>
+            </div>
+            <div class="child">
+                <p>2</p>
+            </div>
+            <div class="child">
+                <p>3
+                </p>
+            </div>
+            <div class="child2">
+                <p>+</p>
+            </div>
+            <div class="child"><p>4</p></div>
+            <div class="child"><p>5</p></div>
+            <div class="child"><p>6</p></div>
+            <div class="child2"><p>-</p></div>
+            <div class="child"><p>7</p></div>
+            <div class="child"><p>8</p></div>
+            <div class="child"><p>9</p></div>
+            <div class="child2"><p>*</p></div>
+            <div class="child3"><p><strong>C</strong></p></div>
+            <div class="child"><p>0</p></div>
+            <div class="child4" id="equalto"><p>=</p></div>
+            <div class="child2"><p>/</p></div>
+            
+
+        </div>
+        
+    </div>
+</body>
+</html>
+<script>
+    let firstnumber = ""
+    let secondnumber = ""
+    let isoperator =true
+    let displa =document.querySelector("#display")
+    let number = document.querySelectorAll(".child");
+    let secondnum =true
+    for(let i=0;i<10;i++){
+        number[i].addEventListener('click',function(){
+            if(isoperator==true){
+            firstnumber+=number[i].innerText;
+            displa.innerText = firstnumber
+            }
+            else{
+                secondnumber+=number[i].innerText
+                displa.innerText = secondnumber
+                
+            }
+        }
+        )
+    }
+    let op = ""
+
+    let operator = document.querySelectorAll(".child2")
+    for(let i=0;i<operator.length;i++){
+        operator[i].addEventListener('click',function(){
+            op+=operator[i].innerText;
+           displa.innerText = op
+           isoperator = false;
+        })
+        
+    }
+
+let equal =document.querySelector(".child4")
+equal.addEventListener('click',function(){
+        let ans =""
+        if(op=="+"){
+        ans += ( Number(firstnumber) + Number(secondnumber))
+        displa.innerText = ans
+            firstnumber = ""
+            secondnumber =""
+            op=""
+            isoperator=true
+        }
+        else if(op=="-"){
+        ans += ( Number(firstnumber) - Number(secondnumber))
+        displa.innerText = ans
+            firstnumber = ""
+            secondnumber =""
+            op=""
+            isoperator=true
+        }
+        else if(op=="*"){
+        ans += ( Number(firstnumber) * Number(secondnumber))
+        displa.innerText = ans
+            firstnumber = ""
+            secondnumber =""
+            op=""
+            isoperator=true
+        }
+        else if(op=="/"){
+        ans += ( Number(firstnumber) / Number(secondnumber))
+        displa.innerText = ans
+            firstnumber = ""
+            secondnumber =""
+            op=""
+            isoperator=true
+        }
+    }
+    
+)
+let c = document.querySelector(".child3")
+c.addEventListener('click',function(){
+    displa.innerText = ""
+    firstnumber = ""
+            secondnumber =""
+            op=""
+            isoperator=true
+})
+</script>
